@@ -1,0 +1,23 @@
+Clickmanual DE:
+
+## Starten mit Docker
+1. etc/hosts DNS Eintrag hinzufügen für "127.0.0.1 dev.weatherchat.de"
+2. lokale Dockercompose "Dockercompose-local.yml" ausführen mit dem Befehl dockercompose -f Dockercompose-local.yml up
+
+## Starten unabhängig (bei Bedarf)
+1. Rasa als Docker Container bauen. Siehe rasa -> Dockerfile. Publish Port 5005:5005
+2. In Ordner weatherchat navigieren
+3. Starte Backend mit Maven mvn spring-boot:run
+4. In Ordner weatherchatfrontend navigieren
+5. Frontend Befehl "npm install"
+6. Befehl "ng serve" / "npm start"
+
+## Cypress Tests ausführen (bei Bedarf)
+1. Frontend starten, wie in Anleitung "Starten unabhängig" beschrieben
+2. Befehl "npm install cypress"
+3. Befehl "npx cypress open"
+4. "E2E Testing" auswählen
+5. Start E2E Testing in Edge
+6. Select frontendFunctionality / rasaFunctionality
+
+

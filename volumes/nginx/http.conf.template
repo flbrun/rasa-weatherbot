@@ -1,0 +1,26 @@
+server {
+    listen 80 default_server reuseport;
+    listen [::]:80 default_server reuseport;
+    server_name ${DOMAIN_NAME_HTTP};
+
+    location /.well-known/acme-challenge {
+        allow all;
+        root /var/www/certbot;
+        try_files $uri =404;
+    }
+
+     location / {
+        return 301 https://$http_host$request_uri;
+     }
+}
+
+server {
+    listen 9876;
+    listen [::]:9876;
+    server_name ${DOMAIN_NAME_HTTP};
+
+    location /metrics {
+         stub_status on;
+         access_log off;
+    }
+}

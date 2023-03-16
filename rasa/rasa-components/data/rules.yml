@@ -1,0 +1,75 @@
+version: "3.1"
+
+rules:
+
+
+- rule: Say Hello everytime the user greets
+  steps:
+  - intent: greet
+  - action: utter_greet
+
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- rule: Say 'I am a bot' anytime the user challenges
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+
+- rule: Say 'Bratwurst' anytime the user wants bratwurst
+  steps:
+  - intent: bratwurst
+  - action: utter_bratwurst
+
+- rule: Say mood anytime the user asked you to
+  steps:
+    - intent: getting_asked_mood
+    - action: utter_mood
+
+- rule: Say capabilities anytime the user asks what you can do
+  steps:
+    - intent: capabilities
+    - action: utter_capabilities
+
+- rule: Say no problem anytime the user thanks
+  steps:
+    - intent: thank_you
+    - action: utter_thank_you
+
+
+- rule: Cheer up Up
+  steps:
+    - intent: mood_unhappy
+    - action: utter_cheer_up
+
+- rule: give answer if the user is happy
+  steps:
+    - intent: mood_great
+    - action: utter_affirm
+
+- rule: give answer to out of scope questions
+  steps:
+    - intent: out_of_scope
+    - action: utter_out_of_scope
+
+- rule: give answer if user cant type
+  steps:
+    - intent: smashing_keyboard
+    - action: utter_smashing_keyboard
+
+- rule: ask for location if the user ask for just the weather
+  steps:
+    - intent: ask_weather_no_location
+    - action: utter_LOCATION
+
+- rule: answer if the user affirms
+  steps:
+    - intent: affirm
+    - action: utter_affirm
+
+- rule: answer if the user denies
+  steps:
+    - intent: deny
+    - action: utter_deny

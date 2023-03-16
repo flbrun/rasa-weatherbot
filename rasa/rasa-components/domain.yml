@@ -1,0 +1,116 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - capabilities
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - bratwurst
+  - ask_location_weather
+  - ask_weather_no_location
+  - getting_asked_mood
+  - thank_you
+  - follow_up_weather
+  - out_of_scope
+  - smashing_keyboard
+
+entities:
+  - LOCATION
+  - time
+
+slots:
+  LOCATION:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: LOCATION
+  time:
+    type: any
+    mappings:
+    - type: from_entity
+      entity: time
+
+
+#forms:
+#  weather_question_form:
+#    ignored_intents:
+#    - greet
+#    - goodbye
+#    - affirm
+#    - deny
+#    - capabilities
+#    - mood_great
+#    - mood_unhappy
+#    - bot_challenge
+#    - bratwurst
+#    - getting_asked_mood
+#    - thank_you
+#    - ask_for_time
+#    required_slots:
+#      - LOCATION
+#      - time
+
+responses:
+  utter_ask_weather_question_form_LOCATION:
+  - text: "Für welchen Ort möchtest du die Wetterinformationen abrufen?"
+
+  utter_ask_weather_question_form_time:
+  - text: "Zu welchem Tag möchtest du die Wetterinformationen haben?"
+
+  utter_LOCATION:
+  - text: "Für welchen Ort möchtest du die Wetterinformationen abrufen?"
+
+  utter_ask_time:
+  - text: "Zu welchem Tag möchtest du die Wetterinformationen haben?"
+
+  utter_thank_you:
+  - text: "Gerngeschehen. Kann ich dir sonst noch weiterhelfen?"
+
+  utter_greet:
+  - text: "Hallo, wie kann ich dir helfen?"
+
+  utter_cheer_up:
+  - text: "Hier ist eine Kleinigkeit um dich aufzuheitern. Schreib mir, ob es dich aufheitern konnte."
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+
+  utter_did_that_help:
+  - text: "Konnte ich dich befriedigen?"
+
+  utter_affirm:
+  - text: "Freut mich zu hören."
+
+  utter_goodbye:
+  - text: "Tschau"
+
+  utter_iamabot:
+  - text: "Ich bin ein ein Wetterbot, frag mich nach dem Wetter."
+  
+  utter_bratwurst:
+  - text: "Gib mir eine Bratwurst"
+
+  utter_mood:
+  - text: "Mir gehts so gut, wie es einem Bot nunmal gehen kann und wie geht es dir?"
+
+
+  utter_capabilities:
+  - text: "Frag mich nach einem Ort und einem Tag, von welchem du das Wetter wissen möchtest."
+
+
+  utter_out_of_scope:
+  - text: "Mit solchen Dingen beschäftige ich mich leider nicht. Ich bin dafür gedacht, dir das Wetter zu einem Ort deiner Wahl zu sagen."
+
+  utter_smashing_keyboard:
+  - text: "Bitte behandle deine Tastatur mit Respekt!"
+
+  utter_deny:
+  - text: "Schade"
+
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

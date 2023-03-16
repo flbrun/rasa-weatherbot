@@ -1,0 +1,87 @@
+---
+version: '3'
+services:
+
+  duckling:
+    image: rasa/duckling:latest
+    restart: unless-stopped
+    container_name: duckling
+    expose:
+      - "8000"
+
+  rasa:
+    build:
+        context: ./rasa
+        dockerfile: Dockerfile
+    restart: unless-stopped
+    container_name: rasa
+    expose:
+      - "5005"
+    depends_on:
+      - duckling
+
+  weatherchat:
+    build:
+        context: ./weatherchat
+        dockerfile: Dockerfile
+    restart: unless-stopped
+    container_name: weatherchat
+    expose:
+      - "8443"
+    environment:
+      - "SPRING_PROFILES_ACTIVE=local-docker"
+    volumes:
+      - ./volumes/selfsignedssl:/app/ssl:ro
+    depends_on:
+      - rasa
+
+  weatherchatfrontend:
+    build:
+        context: ./weatherchatfrontend
+        dockerfile: Dockerfile
+    restart: unless-stopped
+    container_name: weatherchatfrontend
+    environment:
+      DOMAIN_NAME_HTTPS: dev.weatherchat.de
+      DOMAIN_NAME_HTTP: localhost
+    volumes:
+      - ./volumes/nginx:/etc/nginx/templates:rw,cached
+      - ./volumes/selfsignedssl:/etc/nginx/ssl/live/dev.weatherchat.de:ro
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - weatherchat
+
+  nginx-exporter:
+    image: nginx/nginx-prometheus-exporter:latest
+    restart: unless-stopped
+    container_name: exporter
+    command: [ "-nginx.scrape-uri=http://weatherchatfrontend:9876/metrics" ]
+    expose:
+      - "9113"
+    depends_on:
+      - weatherchatfrontend
+
+  prometheus:
+    image: prom/prometheus:latest
+    restart: unless-stopped
+    container_name: prometheus
+    volumes:
+      - ./volumes/prometheus:/etc/prometheus:ro
+    depends_on:
+      - weatherchatfrontend
+    expose:
+      - "9090"
+    ports:
+      - "9090:9090"
+
+  grafana:
+    image: grafana/grafana:latest
+    restart: unless-stopped
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./volumes/grafana/datasources:/etc/grafana/provisioning/datasources
+      - ./volumes/grafana/grafana-data:/var/lib/grafana

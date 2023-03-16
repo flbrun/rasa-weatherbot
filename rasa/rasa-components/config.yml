@@ -1,0 +1,27 @@
+recipe: default.v1
+language: de
+
+pipeline:
+  - name: SpacyNLP
+    model: de_core_news_lg
+  - name: SpacyTokenizer
+  - name: SpacyFeaturizer
+  - name: SpacyEntityExtractor
+    dimensions: [ "LOCATION" ]
+  - name: DucklingEntityExtractor
+    url: "http://duckling:8000"
+    dimensions: [ "time" ]
+    locale: "de_DE"
+    timezone: "Europe/Berlin"
+    timeout : 3
+  - name: LexicalSyntacticFeaturizer
+  - name: CountVectorsFeaturizer
+    analyzer: char_wb
+    min_ngram: 1
+    max_ngram: 4
+  - name: DIETClassifier
+    epochs: 100
+    constrain_similarities: true
+
+policies:
+  - name: RulePolicy

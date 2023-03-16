@@ -1,0 +1,58 @@
+
+<!--displays the area where the chatbubbles are represented-->
+<div class="grid justify-items-stretch static w-5/6 mb-5 mx-auto my-auto mt-5 gap-y-1">
+  <div class="rounded-lg h-auto max-w-xs break-words border border-amber-50 shadow-gray-300 shadow-md" [ngClass]="{'bg-blue-400 justify-self-end opacity-95 rounded-br-none': item.name != 'Bot', 'bg-red-300 justify-self-start opacity-95 rounded-bl-none': item.name == 'Bot'}" *ngFor="let item of messageArray.slice(1)">
+    <div id="textBubble" class="ml-1 mr-1">{{item.message}}</div>
+    <div *ngIf="item.data">
+      <!-- picture of baby tiger-->
+      <div *ngIf="!item.data.main && !item.data.cnt"><img src="{{item.data}}" alt="" class="rounded-xl bg-blue-300 mt-2 mb-2 mx-auto w-[19rem] shadow-stone-700 shadow-md"/></div>
+      <!-- widget for current weather -->
+      <div *ngIf="item.data.main">
+        <div  id="widget" class="box mt-4">
+          <div class="rounded-xl border border-blue-300 mx-auto my-auto bg-blue-300 -mt-2.5 mb-2 ml-2 mr-2 shadow-stone-700 shadow-md" id="weather">
+            <div class="mt-2 mb-2 ml-2 mr-2 flex">
+              <div class="my-auto mx-auto">
+                <div class="flex my-auto mx-auto">
+                  <div class="text-4xl mx-auto">{{item.data.main.temp}}</div>
+                  <div class="text-lg">°C</div>
+                </div>
+                <div class="flex mt-2">
+                  <div class="mx-auto my-auto">Feels like: {{item.data.main.feels_like.toFixed(1)}}°C</div>
+                </div>
+              </div>
+              <div class="my-auto mx-auto">
+                <div class="ml-[25%]"><img src="/assets/icons/weather/{{item.data.weather[0].icon}}.gif" alt="Description" /></div>
+                <div class="flex">
+                  <div class="flex flex-col ml-4"><fa-icon [icon]="faAngleDoubleUp" class="mx-auto"> </fa-icon>{{item.data.main.temp_max.toFixed(1)}}</div>
+                  <div class="flex flex-col ml-4"><fa-icon [icon]="faAngleDoubleDown" class="mx-auto"></fa-icon>{{item.data.main.temp_min.toFixed(1)}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- widget for weather forecast -->
+      <div *ngIf="item.data.cnt" id="forecastWidget" class="mt-2 mb-2 ml-2 mr-2 flex flex-col">
+        <div *ngFor="let list of item.data.list; index as index" class="mx-auto">
+          <div class="flex mt-0.5 mb-0.5 max-h-12 mx-auto max-w-xl min-w-[15rem] border border-blue-300 rounded-lg bg-blue-300 shadow-md shadow-stone-700">
+            <div class="flex mx-auto">
+              <div class="flex flex-col">
+                <div class="my-auto ml-2 mr-2 text-xs">{{item.data.list[index].dt * 1000 | date:'dd.MM.yy'}}</div>
+                <div class="ml-2 my-auto text-xl">{{item.data.list[index].temp.day.toFixed(1)}}°C</div>
+              </div>
+              <div class="flex flex-row">
+                <div> <img class="h-10 w-10" src="/assets/icons/weather/{{item.data.list[index].weather[0].icon}}.gif" alt="Description"/> </div>
+                <div class="my-auto ml-2 mr-3 flex flex-col text-xs"><fa-icon [icon]="faAngleDoubleDown" class="mx-auto"></fa-icon >{{item.data.list[index].temp.min.toFixed(0)}}°C</div>
+                <div class="my-auto mr-3 flex flex-col text-xs"><fa-icon [icon]="faAngleDoubleUp" class="mx-auto"></fa-icon>{{item.data.list[index].temp.max.toFixed(0)}}°C</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Calogero Lauricella, Florian Brunner, Emilia Müller -->
+  <!-- type schreibt... if Bot is writing -->
+  <div *ngIf="messageArray.at(messageArray.length-1).name != 'Bot'" class="rounded-lg h-auto max-w-xs break-words border border-amber-50 shadow-gray-300 shadow-lg bg-red-300 justify-self-start opacity-95 rounded-bl-none"> Schreibt... </div>
+</div>
+

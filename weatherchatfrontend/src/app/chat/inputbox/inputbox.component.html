@@ -1,0 +1,7 @@
+
+<!--inputBox where the user can type messages to communicate with the cahtbot-->
+<input [disabled]="messageArray.at(messageArray.length-1).name != 'Bot'" type="text" placeholder="Sag etwas..." class="static p-2.5 h-12 bg-amber-50 border border-amber-50 rounded-l-lg w-full placeholder-gray-700 focus:placeholder-transparent focus:caret-emerald-700" [(ngModel)]='newMessage' (keyup.enter)="sendMessageToServer(); clear()" required >
+<!--Calogero Lauricella und Emilia Müller-->
+<!--Send Button to send messages-->
+<button [disabled]="!newMessage" class="justify-end w-20 h-12 bg-blue-300 rounded-r-lg right-[34%] bottom-[23.5%] border border-white border-2 hover:bg-blue-600 hover:border hover:border-none" (click)="sendMessageToServer(); clear()">Send</button>
+

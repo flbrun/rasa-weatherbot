@@ -1,0 +1,106 @@
+trigger:
+- Dev
+stages:
+#############################################################################################################
+#############################################################################################################
+- stage: Test
+  pool:
+    vmImage: ubuntu-latest
+  displayName: Test stage
+  jobs:
+#############################################################################################################
+    - job: Test_Backend
+      displayName: Test Backend
+      steps:
+      - task: Maven@4
+        inputs:
+          mavenPomFile: 'weatherchat/pom.xml'
+          goals: '-Dspring.profiles.active=prod test'
+          publishJUnitResults: true
+          testResultsFiles: '**/surefire-reports/TEST-*.xml'
+          codeCoverageToolOption: 'Cobertura'
+          javaHomeOption: 'JDKVersion'
+          jdkVersionOption: '1.17'
+          mavenVersionOption: 'Default'
+          mavenAuthenticateFeed: false
+          effectivePomSkip: false
+          sonarQubeRunAnalysis: false
+      
+##############################################################################################################
+#    - job: Test_Frontend
+#      displayName: Frontend
+#      steps:
+#############################################################################################################
+#############################################################################################################
+- stage: Docker
+  dependsOn: Test
+  pool:
+    vmImage: ubuntu-latest
+  displayName: Docker Jobs
+  jobs:
+#############################################################################################################
+  - job: Publish
+    displayName: Build And Publish
+    steps:
+    - task: Maven@4
+      inputs:
+        mavenPomFile: 'weatherchat/pom.xml'
+        goals: '-Dspring.profiles.active=prod -DskipTest spring-boot:build-image'
+        javaHomeOption: 'JDKVersion'
+        jdkVersionOption: '1.17'
+        mavenVersionOption: 'Default'
+        mavenAuthenticateFeed: false
+        effectivePomSkip: false
+        sonarQubeRunAnalysis: false
+      displayName: Build Backend
+
+    - script: |
+        sudo docker build -t $REGISTRY/weatherbot/weatherchatfrontend:latest ./weatherchatfrontend
+      env:
+        REGISTRY: $(Registry)
+      displayName: Build Frontend
+
+#    - script: |
+#        sudo docker build -t $REGISTRY/weatherbot/rasa:latest ./rasa
+#      env:
+#        REGISTRY: $(Registry)
+#      displayName: Build Rasa
+
+    - script: |
+       sudo docker login $REGISTRY -u $USERNAME -p $TOKEN
+      env:
+        USERNAME: $(Username)
+        TOKEN: $(Token)
+        REGISTRY: $(Registry)
+      displayName: Docker Login
+
+    - script: |
+        sudo docker push $REGISTRY/weatherbot/weatherchat:latest
+        sudo docker push $REGISTRY/weatherbot/weatherchatfrontend:latest
+      env:
+        REGISTRY: $(Registry)
+      displayName: Push
+########################################################################
+  - job: createArtifact
+    displayName: Publish Volumes
+    steps:
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: './volumes'
+        ArtifactName: 'volumes'
+        publishLocation: 'Container'
+        StoreAsTar: false
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: './Dockercompose-online.yml'
+        ArtifactName: 'compose'
+        publishLocation: 'Container'
+        StoreAsTar: false
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: './init-letsencrypt.sh'
+        ArtifactName: 'init-script'
+        publishLocation: 'Container'
+        StoreAsTar: false

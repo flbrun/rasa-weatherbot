@@ -1,0 +1,20 @@
+<!--Emilia Müller-->
+<!--displays the whole Screen -->
+<div class="flex flex-col w-screen h-screen bg-[url('/assets/Background.gif')] bg-no-repeat bg-cover">
+  <!--title-->
+  <div id="canvas" class="flex right-0 w-[330px] h-1/6 left-0 ml-auto mr-auto absolute text-3xl text-amber-50">
+    <div class="flex mx-auto" *ngFor="let character of title.split('')">
+      <div class="mb-3 mt-auto hover:mb-8 duration-500 font-outline-2">{{character}}</div>
+    </div>
+  </div>
+  <!--import of Chat Component-->
+  <app-chat class="flex flex-col m-auto transition-all duration-1000 w-1/2 h-3/5 bg-emerald-700 bg-opacity-70 rounded-xl hover:shadow-gray-100 hover:shadow-2xl"></app-chat>
+  <!--footer-->
+  <div class="flex bg-blue-300 h-[4%] text-xs align-text-middle">
+    <div class="mr-auto ml-1 my-auto">FHDW - Web Technologies and Applications</div>
+    <div class="ml-auto mr-1 my-auto ">Created by Calogero Lauricella, Emilia Müller, Florian Brunner, Florian Schreiner</div>
+  </div>
+</div>
+
+
+

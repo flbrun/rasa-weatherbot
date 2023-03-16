@@ -1,0 +1,104 @@
+# @author Florian Brunner
+spring:
+  profiles:
+    active: dev
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev,prod,local-docker
+  application:
+    name: weatherchat
+
+#Weather Api
+weather:
+  api:
+    key: xxxxxxxxxxxxxxxxxxxxx
+    url: https://api.openweathermap.org/data/2.5/weather?
+  forecast:
+    url: https://api.openweathermap.org/data/2.5/forecast/daily?
+
+#Location to coordinates Api
+geo:
+  api:
+    key: xxxxxxxxxxxxxxxxxxx
+    url: https://api.geoapify.com/v1/geocode/search?
+
+management:
+  server:
+    port: 9875
+    ssl:
+      enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+origin:
+   path: "*" #Allow all origins
+
+#Rasa Api
+rasa:
+  communication:
+    url: http://localhost:5005/webhooks/rest/webhook
+  entitymapper:
+    url: http://localhost:5005/model/parse
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+#Certbot SSL Config
+server:
+  port: 8443
+  ssl:
+    key-store: file:/app/ssl/keystore.p12
+    key-store-type: PKCS12
+    key-store-password: Backend
+    key-alias: tomcat
+
+origin:
+   path: "*" #Allow all origins
+#Rasa Api
+rasa:
+  communication:
+    url: http://rasa:5005/webhooks/rest/webhook
+  entitymapper:
+    url: http://rasa:5005/model/parse
+
+---
+spring:
+  config:
+    activate:
+      on-profile:  local-docker
+
+#Selfsigned SSL Config
+server:
+  port: 8443
+  ssl:
+    certificate: file:/app/ssl/fullchain.pem
+    certificate-private-key: file:/app/ssl/privkey.pem
+    trust-store: file:/app/ssl/keystore.p12
+    trust-store-password: Backend
+    trust-store-type: PKCS12
+
+origin:
+  path: "*" #Allow all origins
+#Rasa Api
+rasa:
+  communication:
+    url: http://rasa:5005/webhooks/rest/webhook
+  entitymapper:
+    url: http://rasa:5005/model/parse

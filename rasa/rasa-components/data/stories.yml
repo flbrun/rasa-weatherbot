@@ -1,0 +1,84 @@
+version: "3.1"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: getting_asked_mood
+  - action: utter_mood
+  - intent: mood_great
+  - action: utter_affirm
+
+- story: mood_happy
+  steps:
+  - intent: getting_asked_mood
+  - action: utter_mood
+  - intent: mood_greate
+  - action: utter_affirm
+
+- story: mood sad 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - intent: affirm
+  - action: utter_affirm
+
+- story: mood sad 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - intent: deny
+  - action: utter_deny
+
+- story: small talk
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: getting_asked_mood
+  - action: utter_mood
+  - intent: mood_great
+  - action: utter_affirm
+  - intent: capabilities
+  - action: utter_capabilities
+  - intent: bot_challenge
+  - action: utter_iamabot
+  - intent: thank_you
+  - action: utter_thank_you
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: weather talk
+  steps:
+  - intent: ask_location_weather
+    entities:
+      - LOCATION: Bielefeld
+      - time: morgen
+  - slot_was_set:
+      - LOCATION: Bielefeld
+      - time: morgen
+  - intent: ask_location_weather
+    entities:
+      - time: übermorgen
+  - slot_was_set:
+      - time: übermorgen
+  - intent: thank_you
+  - action: utter_thank_you
+  - slot_was_set:
+      - LOCATION: null
+      - time: null
+
+- story: weather no location
+  steps:
+    - intent: ask_weather_no_location
+    - action: utter_LOCATION
+    - intent: ask_weather_location
+
+
+
+

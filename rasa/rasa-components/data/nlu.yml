@@ -1,0 +1,442 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - guten Abend
+    - guten Morgen
+    - guten Tag
+    - grüß Gott
+    - grüezi
+    - Grüeziwohl
+    - Gruß in die Runde
+    - herzlich willkommen
+    - ich grüße Sie
+    - seien Sie gegrüßt
+    - grazi
+    - griass enk
+    - griezi
+    - grü
+    - grü
+    - grüß dich
+    - grüß euch
+    - gruiazi
+    - Gruß
+    - hallo Leuts
+    - hä
+    - hää
+    - hallihallo
+    - hallo
+    - hallotschi
+    - hallöchen
+    - hallöle
+    - hallöli
+    - hei
+    - hey
+    - hi
+    - hoi
+    - huhu
+    - kuckuck
+    - Mahlzeit
+    - moin
+    - moin moin
+    - morjen
+    - na
+    - na du
+    - na ihr
+    - na ihrs
+    - Nacht!
+    - sei gegrüßt
+    - servus
+    - Tach
+    - Tachchen
+    - Tag
+    - Tagchen
+    - willkommen
+    - d’Ehre
+    - Ei Gude
+    - Glück auf
+    - griass di
+    - griass God
+    - grüezi
+    - Grüße!
+    - Gude
+    - Gude wie
+    - hoila
+    - moin
+    - moin moin
+    - wie sieht's aus
+    - seavas
+    - sers
+    - servus
+    - Tach auch
+    - ahoi
+    - alaaf
+    - Berg frei
+    - Berg Heil
+    - Freundschaft
+    - gelobt sei Jesus Christus
+    - gut Holz
+    - gut Sport
+    - Glück auf
+    - Glück zu
+    - Gott zum Gruße
+    - gut heil
+    - Halali
+    - Happy Landing
+    - helau
+    - Petri Heil
+    - Seid bereit
+    - Sport frei
+    - Weidmannsheil
+    - bonjour
+    - ciao
+    - heyho
+    - hiyo
+    - hola
+    - howdy
+    - merhaba
+    - olá
+    - salut
+    - salve
+    - schalom
+    - schalömchen
+    - yo
+
+
+- intent: goodbye
+  examples: |
+    - adele
+    - adios
+    - adieu
+    - arrivederci
+    - baba
+    - babatschi
+    - bis bald
+    - bis dann
+    - bis dann mal
+    - bis demnächst
+    - bis demnächst in diesem Theater
+    - bis denn
+    - bis die Tage
+    - bis morgen
+    - bis nachher
+    - bis später
+    - bis zum nächsten Mal
+    - bleib sauber
+    - Bussi
+    - bye
+    - bye-bye
+    - ciao
+    - Grüßli
+    - Grüßchen
+    - See you later, alligator
+    - guten Tag!
+    - halt dich
+    - halt dich senkrecht
+    - halt' die Ohren steif
+    - hasta la vista
+    - hau 'rein
+    - ich wünsch' dir was
+    - komm nicht unter die Räder
+    - lass dich nicht hängen
+    - lass' die Haare wehen
+    - leb' wohl
+    - lebe wohl
+    - mach’s gut
+    - mach's besser
+    - mach's ganz gut
+    - mach's hübsch
+    - man hört sich
+    - man schreibt sich
+    - man sieht sich
+    - man spricht sich
+    - meld' dich mal
+    - sayonara
+    - schönen Abend noch
+    - Schönen Gruß
+    - schönen Tag noch
+    - schönes Leben noch
+    - tschau mit AU
+    - tschüs
+    - tschüss
+    - Tschüss mit Ü
+    - tschüsschen
+    - tschüssi
+    - tschüssikowski
+    - tschau
+    - tschaui
+    - tschö
+    - tschö mit Ö
+    - tüdelü
+    - Hade Bruder
+    - Lass dich nicht ärgern
+
+
+- intent: affirm
+  examples: |
+    - ja
+    - richtig
+    - das stimmt!
+    - exakt
+    - das klingt gut
+    - natürlich
+    - jo
+    - auf jeden Fall
+    - ok
+    - yo
+    - korrekt
+    - y
+    - Ja das hat geholfen
+    - Ja hat es
+    - Ja schon
+    - schon
+
+
+
+- intent: deny
+  examples: |
+    - nein
+    - n
+    - niemals
+    - das sehe ich nicht so
+    - das glaube ich nicht
+    - ich mag das nicht
+    - auf keinen Fall
+    - nicht wirklich
+    - das kann nicht funktionieren
+    - das ist nicht möglich 
+    - nicht wirklich
+    - nicht unbedingt
+    - nö
+    - leider nicht
+    - nein leider nicht
+
+- intent: mood_great
+  examples: |
+    - perfekt
+    - super
+    - umwerfend
+    - ich fühle mich wie ein König
+    - wundervoll
+    - kann mich nicht beklagen
+    - prima
+    - wunderbar
+    - Ich fühle mich großartig
+    - Ich bin super
+    - Ich fühle mich sehr gut
+    - super stoked
+    - extrem gut
+    - auch gut
+    - auch sehr gut
+    - richtig gut
+    - wirklich gut
+    - Mir geht es auch gut 
+    - Mir geht es gut
+    - Mir geht es sehr gut
+    - Mir geht es klasse
+    - Mir geht es auch sehr gut
+    - Mir geht es klasse
+    - Mir geht es wirklich gut
+    
+    
+
+- intent: mood_unhappy
+  examples: |
+    - mein Tag war schrecklich
+    - Ich bin traurig
+    - Ich fühl mich nicht so gut
+    - Ich bin enttäuscht
+    - super traurig
+    - traurig
+    - sehr traurig
+    - unglücklich
+    - nicht gut
+    - Mir geht es leider nicht so gut
+    - Mir geht es nicht gut
+    - Mir geht es schlecht
+
+- intent: bot_challenge
+  examples: |
+    - bist du ein Bot?
+    - bist du ein Mensch?
+    - spreche ich mit einem Bot?
+    - spreche ich mit einem Mensch?
+    - wer bist du?
+    
+- intent: bratwurst
+  examples: |
+    - bratwurst
+    - Hast du Bratwurst
+
+- intent: ask_location_weather
+  examples: |
+    - Wird das Wetter in [Berlin](LOCATION) heute besser?
+    - Wird das Wetter in [Frankfurt](LOCATION) heute schlechter?
+    - Welches Wetter erwartet mich heute in [Berlin](LOCATION)?
+    - Wie ist das Wetter heute in [Berlin](LOCATION)?
+    - Welches Wetter erwartet mich heute in [Frankfurt](LOCATION)?
+    - Wird es in [Bremen](LOCATION) heute regnen?
+    - Wie wird das Wetter heute in [Stuttgart](LOCATION)?
+    - Wie wird es heute in [Kiel](LOCATION) ?
+    - Wie ist das Wetter in [Berlin](LOCATION)?
+    - Sag mir das Wetter in [Frankfurt](LOCATION)
+    - Ich gehe heute nach draußen, wie ist das Wetter in [Bremen](LOCATION)?
+    - Wetter in [Stuttgart](LOCATION)
+    - Heute Wetter in [Kiel](LOCATION)
+    - Ich gehe heute nach [Dresden](LOCATION) wie ist dort das Wetter ?
+    - Wie warm ist es in [Wien](LOCATION)?
+    - Wie kalt ist es heute in [Bielefeld](LOCATION)?
+    - Wie warm ist es heute in [Bielefeld](LOCATION)?
+    - Welche Temperaturen erwarten mich in [Salzburg](LOCATION)?
+    - Wie könnte es in [Simmozheim](LOCATION) sein ?
+    - Wie ist das Wetter in [Ravensburg](LOCATION) ?
+    - Wie ist es heute in [Saarbrücken](LOCATION) ?
+    - Wie ist es in [München](LOCATION) heute?
+    - [Hassloch](LOCATION)
+    - Wie ist es heute in [Rüsselsheim](LOCATION)?
+    - Wie warm ist es heute in [Dortmund](LOCATION)?
+    - Wie ist das Wetter morgen in [Berlin](LOCATION)?
+    - Sag mir das Wetter übermorgen in [Frankfurt](LOCATION)
+    - Ich gehe morgen nach draußen, wie ist das Wetter in [Bremen](LOCATION)?
+    - Wetter nächste Woche in [Stuttgart](LOCATION)
+    - Übermorgen Wetter in [Kiel](LOCATION)
+    - Ich gehe morgen nach [Dresden](LOCATION) wie ist dort das Wetter ?
+    - Wie warm ist es nächste Woche in [Wien](LOCATION)?
+    - Wie kalt ist es über morgen in [Bielefeld](LOCATION)?
+    - Welche Temperaturen erwarten mich morgen in [Salzburg](LOCATION)?
+    - Wie könnte es nächste Woche in [Simmozheim](LOCATION) sein ?
+    - Wie ist das Wetter übermorgen in [Ravensburg](LOCATION) ?
+    - Wie ist es morgen in [Saarbrücken](LOCATION) ?
+    - Wie wird in 2 Tagen das Wetter in [Freiburg)](LOCATION) ?
+    - Wie wird in drei Tagen das Wetter in [Koblenz](LOCATION) ?
+    - Wie wird in 4 Tagen das Wetter in [Kiel](LOCATION) ?
+    - Welches Wetter haben wir in zwei Tagen in {LOCATION} ?
+    - Wie wird das Wetter Montag in [Stadtroda](LOCATION) ?
+    - Wie wird das Wetter Dienstag in [Paderborn](LOCATION) ?
+    - Könntest du mir das Wetter für Donnerstag in [Hamburg](LOCATION) sagen ?
+    - Welche Temperaturen erwarten mich in [Salzburg](LOCATION) am Freitag ?
+    - Wie könnte es in [Simmozheim](LOCATION) am Samstag sein ?
+    - Wie ist das Wetter in [Ravensburg](LOCATION) am Sonntag ?
+    - [Bielefeld](LOCATION)
+    - [Köln](LOCATION)
+    - [Aachen](LOCATION)
+    - [Augsburg](LOCATION)
+    - [Essen](LOCATION)
+    - [Bochum](LOCATION)
+    - [Chemnitz](LOCATION)
+    - [Düsseldorf](LOCATION)
+    - [Darmstadt](LOCATION)
+    - [Gütersloh](LOCATION) ?
+    - [Bonn](LOCATION) ?
+
+- intent: ask_weather_no_location
+  examples: |
+    - Wie ist das Wetter?
+    - Wie wird das Wetter?
+    - Wie ist das Wetter morgen?
+    - Wie sieht es draußen aus?
+    - Brauche ich eine Jacke?
+    - Brauche ich einen Regenschirm draußen?
+    - Ist es warm ? 
+    - Ist es kalt ?
+    - Ist es sonnig ? 
+    - Wie ist das Wetter heute ? 
+    
+
+- intent: follow_up_weather
+  examples: |
+    - Und wie ist das Wetter morgen?
+    - Und wie wird das Wetter morgen?
+    - Und wie ist das Wetter übermorgen?
+    - Und wie wird das Wetter übermorgen?
+    - Wie könnte es morgen sein?
+    - Wie könnte es übermorgen sein?
+    - Wie könnte es in zwei Tagen sein?
+    - Wie könnte es in drei Tagen sein?
+    - Und morgen ?
+    - Und übermorgen ?
+    - Und in zwei Tagen ?
+    - Und am Montag ?
+    - Und am Dienstag ?
+    - Und am Mittwoch?
+    - und nächste Woche?
+    - und drei Tage später?
+    - und den nächsten Tag? 
+    - und Freitag?
+
+- intent: capabilities
+  examples: |
+      - Was kannst du?
+      - Was kann man machen?
+      - info
+      - Wie kann ich das nutzen?
+      - Was ist das ?
+      - Worin bist du gut?
+      - Welche Fähigkeiten hast du?
+      - Wie funktioniert das?
+      - hilfe
+      - Kannst du mir helfen?
+      - Ich brauche Hilfe
+
+- intent: getting_asked_mood
+  examples: |
+    - Wie geht es dir?
+    - Wie gehts dir?
+    - Wie läuft es?
+    - Wie steht es?
+    - Wie läufts?
+    - Wie gehts?
+    - Alles gut bei dir?
+    - Na 
+    - Alles klar bei dir?
+    - Ich will wissen, wie es dir geht
+    - Ich möchte wissen, wie es dir geht
+    
+- intent: thank_you
+  examples: |
+    - Danke 
+    - Vielen Dank
+    - Danke sehr
+    - Dankeschön
+    - Danke dir 
+    - Danke Anke
+
+
+- intent: out_of_scope
+  examples: |
+    - Wie heißt der Bundeskanzler? 
+    - Wer ist der Minister für Familie
+    - Wer ist der schnelllste Mensch der Welt?
+    - Wie lange kann ein Mensch die Luft anhalten?
+    - Ist es dunkel im Weltraum?
+    - Was ist dein Lieblingsfach?
+    - Was ist 2 + 2 ?
+    - Wer ist der derzeitige Bundeskanzler ? 
+    - Was soll ich mir heute anziehen ? 
+    - Wo kann ich asiatisch betsellen ? 
+    - Wie lange braucht der Zug nach Bielefeld ?
+    - Gib mir Essen
+    - Wie kann ich Spaß haben ?
+    - Was ist der schnellste Weg nach München ? 
+    - Hast du Probleme ?
+    - Wie bekomme ich Rasa anständig trainiert ?
+    - Was stimmt nicht mit mir ? 
+    - Welche Temperatur hat Wasser bei Raumtemperatur ?
+    - Willst du mit mir Essen gehen ?
+    
+- intent: smashing_keyboard
+  examples: |
+    - adejdsjnjjeesc
+    - adadjaijdufsjkeesfjs
+    - uudhjsjcecnsemcsi
+    - awidjwseiornvdjbnvjkdviosiorvrdv
+    - odprvrpdjslkvmmvnfffvir
+    - ilsjfseoifseflefsfse
+    - efsjknfseweksfs
+    - sekfhflnsljcnslj
+    
+    
+    
+    
+
