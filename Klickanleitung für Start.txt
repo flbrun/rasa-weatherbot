@@ -2,7 +2,7 @@ Clickmanual DE:
 
 ## Starten mit Docker
 1. etc/hosts DNS Eintrag hinzufügen für "127.0.0.1 dev.weatherchat.de"
-2. lokale Dockercompose "Dockercompose-local.yml" ausführen mit dem Befehl dockercompose -f Dockercompose-local.yml up
+2. lokale Dockercompose "Dockercompose-local.yml" ausführen mit dem Befehl docker compose -f Dockercompose-local.yml up
 
 ## Starten unabhängig (bei Bedarf)
 1. Rasa als Docker Container bauen. Siehe rasa -> Dockerfile. Publish Port 5005:5005
